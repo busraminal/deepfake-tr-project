@@ -1,0 +1,17 @@
+# Görsel model eğitimi – S_v (görsel sahtecilik skoru)
+# Girdi: yüz crop veya frame dizisi → Çıktı: sahte olasılığı
+
+model:
+  backbone: resnet18
+  num_classes: 1
+  pretrained: true
+
+train:
+  batch_size: 16
+  epochs: 30
+  lr: 1.0e-3
+  weight_decay: 1.0e-4
+
+data:
+  config: configs/data.yaml
+  split: train

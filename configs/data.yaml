@@ -1,0 +1,44 @@
+# Veri seti ve pipeline konfigürasyonu
+# Multimodal deepfake tespit – Türkçe kontrollü deney
+
+data:
+  raw_videos_dir: data/raw_videos
+  raw_audio_dir: data/raw_audio
+  processed_dir: data/processed
+  faces_dir: data/processed/faces
+  mouths_dir: data/processed/mouths
+  transcripts_dir: data/processed/transcripts
+  metadata_dir: data/processed/metadata
+  splits_dir: data/splits
+  fakes_dir: data/processed/fakes   # üretilmiş sahte videolar (sync_shift, mismatch vb.)
+
+# v1 hedefi: 20 konuşmacı, ~200 gerçek video, ~600 türetilmiş fake, toplam ~800 sample
+targets:
+  num_speakers: 20
+  videos_per_speaker_min: 10
+  videos_per_speaker_max: 20
+  video_duration_sec_min: 4
+  video_duration_sec_max: 8
+  total_real_target: 200
+  total_samples_target: 800
+
+# Sahte örnek üretimi
+manipulation:
+  sync_shift_ms: [100, 200, 300, 400, 500]
+  # content_mismatch: aynı konuşmacı veya farklı konuşmacı cümle eşlemesi
+  # synthetic_audio: TTS/klon (opsiyonel v1)
+
+# Train/val/test – konuşmacı ayrımı (speaker-disjoint)
+split:
+  val_ratio: 0.15
+  test_ratio: 0.15
+  seed: 42
+  # Aynı speaker_id train ve test'te olmayacak
+
+# Ön işleme
+preprocess:
+  fps: 25
+  face_size: 224
+  mouth_size: 96
+  audio_sr: 16000
+  audio_format: wav

@@ -1,0 +1,15 @@
+# Demo: sync model hızlı eğitim (full pipeline ile uyumlu)
+model:
+  mouth_encoder: temporal_cnn
+  text_encoder: simple_bert_or_lstm
+  embedding_dim: 256
+
+train:
+  batch_size: 4
+  epochs: 2
+  lr: 5.0e-4
+  weight_decay: 1.0e-4
+
+data:
+  config: configs/data.yaml
+  split: train

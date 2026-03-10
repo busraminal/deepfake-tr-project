@@ -1,0 +1,21 @@
+# Füzyon modeli – S_f = alpha * S_v + (1 - alpha) * S_l
+# Görsel ve senkron skorlarını birleştirir
+
+fusion:
+  alpha: 0.5
+  # S_f = alpha * S_v + (1 - alpha) * S_l
+  # alpha öğrenilebilir veya sabit (ablation için)
+
+model:
+  visual_checkpoint: null
+  sync_checkpoint: null
+  learn_alpha: false
+
+train:
+  batch_size: 16
+  epochs: 20
+  lr: 1.0e-4
+
+data:
+  config: configs/data.yaml
+  split: train

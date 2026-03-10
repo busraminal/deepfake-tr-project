@@ -1,0 +1,101 @@
+video_path,sample_id,speaker_id,sentence
+data/raw_videos/spk_01/TRDF_00001.mp4,TRDF_00001,spk_01,Bugün model sonuçlarını yeniden değerlendireceğiz.
+data/raw_videos/spk_01/TRDF_00002.mp4,TRDF_00002,spk_01,Bu proje Türkçe konuşma ile dudak hareketlerini analiz eder.
+data/raw_videos/spk_01/TRDF_00003.mp4,TRDF_00003,spk_01,Veri setindeki örnekleri dikkatli şekilde etiketlememiz gerekiyor.
+data/raw_videos/spk_01/TRDF_00004.mp4,TRDF_00004,spk_01,Yarın toplantıda deney sonuçlarını paylaşacağız.
+data/raw_videos/spk_01/TRDF_00005.mp4,TRDF_00005,spk_01,Bu sistem sahte videoları tespit etmeyi amaçlamaktadır.
+data/raw_videos/spk_02/TRDF_00006.mp4,TRDF_00006,spk_02,Model eğitimi tamamlandıktan sonra doğruluk oranını ölçtük.
+data/raw_videos/spk_02/TRDF_00007.mp4,TRDF_00007,spk_02,Araştırma ekibi yeni veri seti üzerinde çalışıyor.
+data/raw_videos/spk_02/TRDF_00008.mp4,TRDF_00008,spk_02,Konuşma ve dudak hareketi uyumu çok önemli bir sinyal verir.
+data/raw_videos/spk_02/TRDF_00009.mp4,TRDF_00009,spk_02,Sentetik ses ile gerçek sesi ayırt etmek mümkündür.
+data/raw_videos/spk_02/TRDF_00010.mp4,TRDF_00010,spk_02,Multimodal sistemler tek moda göre daha güvenilirdir.
+data/raw_videos/spk_03/TRDF_00011.mp4,TRDF_00011,spk_03,Bugün model sonuçlarını yeniden değerlendireceğiz.
+data/raw_videos/spk_03/TRDF_00012.mp4,TRDF_00012,spk_03,Bu proje Türkçe konuşma ile dudak hareketlerini analiz eder.
+data/raw_videos/spk_03/TRDF_00013.mp4,TRDF_00013,spk_03,Veri setindeki örnekleri dikkatli şekilde etiketlememiz gerekiyor.
+data/raw_videos/spk_03/TRDF_00014.mp4,TRDF_00014,spk_03,Yarın toplantıda deney sonuçlarını paylaşacağız.
+data/raw_videos/spk_03/TRDF_00015.mp4,TRDF_00015,spk_03,Bu sistem sahte videoları tespit etmeyi amaçlamaktadır.
+data/raw_videos/spk_04/TRDF_00016.mp4,TRDF_00016,spk_04,Model eğitimi tamamlandıktan sonra doğruluk oranını ölçtük.
+data/raw_videos/spk_04/TRDF_00017.mp4,TRDF_00017,spk_04,Araştırma ekibi yeni veri seti üzerinde çalışıyor.
+data/raw_videos/spk_04/TRDF_00018.mp4,TRDF_00018,spk_04,Konuşma ve dudak hareketi uyumu çok önemli bir sinyal verir.
+data/raw_videos/spk_04/TRDF_00019.mp4,TRDF_00019,spk_04,Sentetik ses ile gerçek sesi ayırt etmek mümkündür.
+data/raw_videos/spk_04/TRDF_00020.mp4,TRDF_00020,spk_04,Multimodal sistemler tek moda göre daha güvenilirdir.
+data/raw_videos/spk_05/TRDF_00021.mp4,TRDF_00021,spk_05,Bugün model sonuçlarını yeniden değerlendireceğiz.
+data/raw_videos/spk_05/TRDF_00022.mp4,TRDF_00022,spk_05,Bu proje Türkçe konuşma ile dudak hareketlerini analiz eder.
+data/raw_videos/spk_05/TRDF_00023.mp4,TRDF_00023,spk_05,Veri setindeki örnekleri dikkatli şekilde etiketlememiz gerekiyor.
+data/raw_videos/spk_05/TRDF_00024.mp4,TRDF_00024,spk_05,Yarın toplantıda deney sonuçlarını paylaşacağız.
+data/raw_videos/spk_05/TRDF_00025.mp4,TRDF_00025,spk_05,Bu sistem sahte videoları tespit etmeyi amaçlamaktadır.
+data/raw_videos/spk_06/TRDF_00026.mp4,TRDF_00026,spk_06,Model eğitimi tamamlandıktan sonra doğruluk oranını ölçtük.
+data/raw_videos/spk_06/TRDF_00027.mp4,TRDF_00027,spk_06,Araştırma ekibi yeni veri seti üzerinde çalışıyor.
+data/raw_videos/spk_06/TRDF_00028.mp4,TRDF_00028,spk_06,Konuşma ve dudak hareketi uyumu çok önemli bir sinyal verir.
+data/raw_videos/spk_06/TRDF_00029.mp4,TRDF_00029,spk_06,Sentetik ses ile gerçek sesi ayırt etmek mümkündür.
+data/raw_videos/spk_06/TRDF_00030.mp4,TRDF_00030,spk_06,Multimodal sistemler tek moda göre daha güvenilirdir.
+data/raw_videos/spk_07/TRDF_00031.mp4,TRDF_00031,spk_07,Bugün model sonuçlarını yeniden değerlendireceğiz.
+data/raw_videos/spk_07/TRDF_00032.mp4,TRDF_00032,spk_07,Bu proje Türkçe konuşma ile dudak hareketlerini analiz eder.
+data/raw_videos/spk_07/TRDF_00033.mp4,TRDF_00033,spk_07,Veri setindeki örnekleri dikkatli şekilde etiketlememiz gerekiyor.
+data/raw_videos/spk_07/TRDF_00034.mp4,TRDF_00034,spk_07,Yarın toplantıda deney sonuçlarını paylaşacağız.
+data/raw_videos/spk_07/TRDF_00035.mp4,TRDF_00035,spk_07,Bu sistem sahte videoları tespit etmeyi amaçlamaktadır.
+data/raw_videos/spk_08/TRDF_00036.mp4,TRDF_00036,spk_08,Model eğitimi tamamlandıktan sonra doğruluk oranını ölçtük.
+data/raw_videos/spk_08/TRDF_00037.mp4,TRDF_00037,spk_08,Araştırma ekibi yeni veri seti üzerinde çalışıyor.
+data/raw_videos/spk_08/TRDF_00038.mp4,TRDF_00038,spk_08,Konuşma ve dudak hareketi uyumu çok önemli bir sinyal verir.
+data/raw_videos/spk_08/TRDF_00039.mp4,TRDF_00039,spk_08,Sentetik ses ile gerçek sesi ayırt etmek mümkündür.
+data/raw_videos/spk_08/TRDF_00040.mp4,TRDF_00040,spk_08,Multimodal sistemler tek moda göre daha güvenilirdir.
+data/raw_videos/spk_09/TRDF_00041.mp4,TRDF_00041,spk_09,Bugün model sonuçlarını yeniden değerlendireceğiz.
+data/raw_videos/spk_09/TRDF_00042.mp4,TRDF_00042,spk_09,Bu proje Türkçe konuşma ile dudak hareketlerini analiz eder.
+data/raw_videos/spk_09/TRDF_00043.mp4,TRDF_00043,spk_09,Veri setindeki örnekleri dikkatli şekilde etiketlememiz gerekiyor.
+data/raw_videos/spk_09/TRDF_00044.mp4,TRDF_00044,spk_09,Yarın toplantıda deney sonuçlarını paylaşacağız.
+data/raw_videos/spk_09/TRDF_00045.mp4,TRDF_00045,spk_09,Bu sistem sahte videoları tespit etmeyi amaçlamaktadır.
+data/raw_videos/spk_10/TRDF_00046.mp4,TRDF_00046,spk_10,Model eğitimi tamamlandıktan sonra doğruluk oranını ölçtük.
+data/raw_videos/spk_10/TRDF_00047.mp4,TRDF_00047,spk_10,Araştırma ekibi yeni veri seti üzerinde çalışıyor.
+data/raw_videos/spk_10/TRDF_00048.mp4,TRDF_00048,spk_10,Konuşma ve dudak hareketi uyumu çok önemli bir sinyal verir.
+data/raw_videos/spk_10/TRDF_00049.mp4,TRDF_00049,spk_10,Sentetik ses ile gerçek sesi ayırt etmek mümkündür.
+data/raw_videos/spk_10/TRDF_00050.mp4,TRDF_00050,spk_10,Multimodal sistemler tek moda göre daha güvenilirdir.
+data/raw_videos/spk_11/TRDF_00051.mp4,TRDF_00051,spk_11,Bugün model sonuçlarını yeniden değerlendireceğiz.
+data/raw_videos/spk_11/TRDF_00052.mp4,TRDF_00052,spk_11,Bu proje Türkçe konuşma ile dudak hareketlerini analiz eder.
+data/raw_videos/spk_11/TRDF_00053.mp4,TRDF_00053,spk_11,Veri setindeki örnekleri dikkatli şekilde etiketlememiz gerekiyor.
+data/raw_videos/spk_11/TRDF_00054.mp4,TRDF_00054,spk_11,Yarın toplantıda deney sonuçlarını paylaşacağız.
+data/raw_videos/spk_11/TRDF_00055.mp4,TRDF_00055,spk_11,Bu sistem sahte videoları tespit etmeyi amaçlamaktadır.
+data/raw_videos/spk_12/TRDF_00056.mp4,TRDF_00056,spk_12,Model eğitimi tamamlandıktan sonra doğruluk oranını ölçtük.
+data/raw_videos/spk_12/TRDF_00057.mp4,TRDF_00057,spk_12,Araştırma ekibi yeni veri seti üzerinde çalışıyor.
+data/raw_videos/spk_12/TRDF_00058.mp4,TRDF_00058,spk_12,Konuşma ve dudak hareketi uyumu çok önemli bir sinyal verir.
+data/raw_videos/spk_12/TRDF_00059.mp4,TRDF_00059,spk_12,Sentetik ses ile gerçek sesi ayırt etmek mümkündür.
+data/raw_videos/spk_12/TRDF_00060.mp4,TRDF_00060,spk_12,Multimodal sistemler tek moda göre daha güvenilirdir.
+data/raw_videos/spk_13/TRDF_00061.mp4,TRDF_00061,spk_13,Bugün model sonuçlarını yeniden değerlendireceğiz.
+data/raw_videos/spk_13/TRDF_00062.mp4,TRDF_00062,spk_13,Bu proje Türkçe konuşma ile dudak hareketlerini analiz eder.
+data/raw_videos/spk_13/TRDF_00063.mp4,TRDF_00063,spk_13,Veri setindeki örnekleri dikkatli şekilde etiketlememiz gerekiyor.
+data/raw_videos/spk_13/TRDF_00064.mp4,TRDF_00064,spk_13,Yarın toplantıda deney sonuçlarını paylaşacağız.
+data/raw_videos/spk_13/TRDF_00065.mp4,TRDF_00065,spk_13,Bu sistem sahte videoları tespit etmeyi amaçlamaktadır.
+data/raw_videos/spk_14/TRDF_00066.mp4,TRDF_00066,spk_14,Model eğitimi tamamlandıktan sonra doğruluk oranını ölçtük.
+data/raw_videos/spk_14/TRDF_00067.mp4,TRDF_00067,spk_14,Araştırma ekibi yeni veri seti üzerinde çalışıyor.
+data/raw_videos/spk_14/TRDF_00068.mp4,TRDF_00068,spk_14,Konuşma ve dudak hareketi uyumu çok önemli bir sinyal verir.
+data/raw_videos/spk_14/TRDF_00069.mp4,TRDF_00069,spk_14,Sentetik ses ile gerçek sesi ayırt etmek mümkündür.
+data/raw_videos/spk_14/TRDF_00070.mp4,TRDF_00070,spk_14,Multimodal sistemler tek moda göre daha güvenilirdir.
+data/raw_videos/spk_15/TRDF_00071.mp4,TRDF_00071,spk_15,Bugün model sonuçlarını yeniden değerlendireceğiz.
+data/raw_videos/spk_15/TRDF_00072.mp4,TRDF_00072,spk_15,Bu proje Türkçe konuşma ile dudak hareketlerini analiz eder.
+data/raw_videos/spk_15/TRDF_00073.mp4,TRDF_00073,spk_15,Veri setindeki örnekleri dikkatli şekilde etiketlememiz gerekiyor.
+data/raw_videos/spk_15/TRDF_00074.mp4,TRDF_00074,spk_15,Yarın toplantıda deney sonuçlarını paylaşacağız.
+data/raw_videos/spk_15/TRDF_00075.mp4,TRDF_00075,spk_15,Bu sistem sahte videoları tespit etmeyi amaçlamaktadır.
+data/raw_videos/spk_16/TRDF_00076.mp4,TRDF_00076,spk_16,Model eğitimi tamamlandıktan sonra doğruluk oranını ölçtük.
+data/raw_videos/spk_16/TRDF_00077.mp4,TRDF_00077,spk_16,Araştırma ekibi yeni veri seti üzerinde çalışıyor.
+data/raw_videos/spk_16/TRDF_00078.mp4,TRDF_00078,spk_16,Konuşma ve dudak hareketi uyumu çok önemli bir sinyal verir.
+data/raw_videos/spk_16/TRDF_00079.mp4,TRDF_00079,spk_16,Sentetik ses ile gerçek sesi ayırt etmek mümkündür.
+data/raw_videos/spk_16/TRDF_00080.mp4,TRDF_00080,spk_16,Multimodal sistemler tek moda göre daha güvenilirdir.
+data/raw_videos/spk_17/TRDF_00081.mp4,TRDF_00081,spk_17,Bugün model sonuçlarını yeniden değerlendireceğiz.
+data/raw_videos/spk_17/TRDF_00082.mp4,TRDF_00082,spk_17,Bu proje Türkçe konuşma ile dudak hareketlerini analiz eder.
+data/raw_videos/spk_17/TRDF_00083.mp4,TRDF_00083,spk_17,Veri setindeki örnekleri dikkatli şekilde etiketlememiz gerekiyor.
+data/raw_videos/spk_17/TRDF_00084.mp4,TRDF_00084,spk_17,Yarın toplantıda deney sonuçlarını paylaşacağız.
+data/raw_videos/spk_17/TRDF_00085.mp4,TRDF_00085,spk_17,Bu sistem sahte videoları tespit etmeyi amaçlamaktadır.
+data/raw_videos/spk_18/TRDF_00086.mp4,TRDF_00086,spk_18,Model eğitimi tamamlandıktan sonra doğruluk oranını ölçtük.
+data/raw_videos/spk_18/TRDF_00087.mp4,TRDF_00087,spk_18,Araştırma ekibi yeni veri seti üzerinde çalışıyor.
+data/raw_videos/spk_18/TRDF_00088.mp4,TRDF_00088,spk_18,Konuşma ve dudak hareketi uyumu çok önemli bir sinyal verir.
+data/raw_videos/spk_18/TRDF_00089.mp4,TRDF_00089,spk_18,Sentetik ses ile gerçek sesi ayırt etmek mümkündür.
+data/raw_videos/spk_18/TRDF_00090.mp4,TRDF_00090,spk_18,Multimodal sistemler tek moda göre daha güvenilirdir.
+data/raw_videos/spk_19/TRDF_00091.mp4,TRDF_00091,spk_19,Bugün model sonuçlarını yeniden değerlendireceğiz.
+data/raw_videos/spk_19/TRDF_00092.mp4,TRDF_00092,spk_19,Bu proje Türkçe konuşma ile dudak hareketlerini analiz eder.
+data/raw_videos/spk_19/TRDF_00093.mp4,TRDF_00093,spk_19,Veri setindeki örnekleri dikkatli şekilde etiketlememiz gerekiyor.
+data/raw_videos/spk_19/TRDF_00094.mp4,TRDF_00094,spk_19,Yarın toplantıda deney sonuçlarını paylaşacağız.
+data/raw_videos/spk_19/TRDF_00095.mp4,TRDF_00095,spk_19,Bu sistem sahte videoları tespit etmeyi amaçlamaktadır.
+data/raw_videos/spk_20/TRDF_00096.mp4,TRDF_00096,spk_20,Model eğitimi tamamlandıktan sonra doğruluk oranını ölçtük.
+data/raw_videos/spk_20/TRDF_00097.mp4,TRDF_00097,spk_20,Araştırma ekibi yeni veri seti üzerinde çalışıyor.
+data/raw_videos/spk_20/TRDF_00098.mp4,TRDF_00098,spk_20,Konuşma ve dudak hareketi uyumu çok önemli bir sinyal verir.
+data/raw_videos/spk_20/TRDF_00099.mp4,TRDF_00099,spk_20,Sentetik ses ile gerçek sesi ayırt etmek mümkündür.
+data/raw_videos/spk_20/TRDF_00100.mp4,TRDF_00100,spk_20,Multimodal sistemler tek moda göre daha güvenilirdir.

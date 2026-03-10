@@ -1,0 +1,29 @@
+{
+  "visual": {
+    "accuracy": 0.31473620375985445,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "auc": 0.4985037597831091,
+    "eer": 1.0,
+    "n_samples": 1649
+  },
+  "sync": {
+    "accuracy": 0.6852637962401456,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "auc": 0.5,
+    "eer": 1.0,
+    "n_samples": 1649
+  },
+  "fusion": {
+    "accuracy": 0.31473620375985445,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "auc": 0.4985037597831091,
+    "eer": 1.0,
+    "n_samples": 1649
+  }
+}

@@ -1,0 +1,15 @@
+% Fusion alpha ablation. Run: python scripts/run_ablation_alpha.py --out paper/ablation_alpha.tex
+\begin{table}[htbp]
+  \centering
+  \caption{Fusion ablation: effect of $\alpha$ in $S_f = \alpha S_v + (1-\alpha) S_l$.}
+  \label{tab:ablation_alpha}
+  \begin{tabular}{lccc}
+    \toprule
+    $\alpha$ & Acc. & AUC & EER \\
+    \midrule
+    0.25 & 0.315 & 0.499 & 1.000 \\
+    0.5 & 0.315 & 0.499 & 1.000 \\
+    0.75 & 0.315 & 0.499 & 1.000 \\
+    \bottomrule
+  \end{tabular}
+\end{table}

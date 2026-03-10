@@ -1,0 +1,15 @@
+# Demo: az epoch, küçük batch (hızlı çalıştırma)
+model:
+  backbone: resnet18
+  num_classes: 1
+  pretrained: true
+
+train:
+  batch_size: 4
+  epochs: 2
+  lr: 1.0e-3
+  weight_decay: 1.0e-4
+
+data:
+  config: configs/data.yaml
+  split: train

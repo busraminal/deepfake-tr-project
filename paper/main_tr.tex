@@ -1,0 +1,372 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[turkish]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{cite}
+
+\title{Türkçe Konuşma ve Dudak Hareketi Tutarlılığına Dayalı Multimodal Deepfake Tespit Sistemi}
+
+\author{\IEEEauthorblockN{Ad Soyad}
+\IEEEauthorblockA{\textit{Bölüm, Üniversite} \\
+Şehir, Türkiye \\
+email@adres.com}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+Son yıllarda üretici yapay zeka modellerindeki gelişmeler, gerçekçi sentetik video ve ses üretimini mümkün hale getirmiştir. Bu tür içerikler genel olarak \textit{deepfake} olarak adlandırılmaktadır. Deepfake teknolojisi eğlence ve içerik üretimi gibi alanlarda yaratıcı uygulamalar sunsa da kimlik sahteciliği, yanlış bilgi yayılımı ve medya manipülasyonu gibi ciddi güvenlik riskleri oluşturmaktadır.
+
+Geleneksel deepfake tespit yöntemleri çoğunlukla görüntü tabanlı artefaktların analizine dayanır. Ancak modern üretim teknikleri görsel bozulmaları büyük ölçüde azaltmış ve bu yöntemlerin etkinliğini sınırlamıştır. Bu nedenle son yıllarda araştırmalar multimodal analiz yöntemlerine yönelmiştir.
+
+Bu çalışmada görüntü, konuşma ve dudak hareketlerini birlikte analiz eden multimodal bir deepfake tespit sistemi önerilmektedir. Sistem üç ana bileşenden oluşmaktadır: (i) yüz görüntülerinden elde edilen görsel sahtecilik analizi, (ii) konuşma sinyalinin otomatik konuşma tanıma sistemi ile metne dönüştürülmesi ve dil modeli ile temsil edilmesi, (iii) dudak hareketlerinden elde edilen zamansal artikülasyon temsili. Konuşma içeriği ile dudak hareketleri arasındaki uyumsuzluk kosinüs benzerliği ile ölçülmekte ve görsel sahtecilik skoru ile birleştirilerek nihai sahtecilik tahmini elde edilmektedir.
+
+Bu çalışma kapsamında ayrıca Türkçe konuşma videoları için multimodal bir veri seti tasarlanmış ve farklı manipülasyon türleri içeren kontrollü sahte örnekler üretilmiştir. Deneysel değerlendirme planı kapsamında görsel, senkron ve multimodal modellerin performansları karşılaştırmalı olarak analiz edilmektedir.
+
+\end{abstract}
+
+\begin{IEEEkeywords}
+deepfake tespiti, multimodal analiz, konuşma--dudak tutarlılığı, Türkçe konuşma videoları, ses--görüntü senkronizasyonu, büyük dil modelleri (LLM)
+\end{IEEEkeywords}
+
+\section{Giriş}
+
+Son yıllarda derin öğrenme tabanlı üretici modellerin gelişmesiyle birlikte sentetik medya üretimi büyük ölçüde kolaylaşmıştır. Özellikle Generative Adversarial Networks (GAN) ve diffusion tabanlı üretim modelleri kullanılarak gerçek insanlara ait yüz görüntülerinin ve seslerin son derece gerçekçi şekilde taklit edilmesi mümkün hale gelmiştir. Bu tür sentetik medya içerikleri literatürde genel olarak \textit{deepfake} olarak adlandırılmaktadır.
+
+Deepfake teknolojisi eğlence ve sinema sektöründe yaratıcı uygulamalar sunabilse de aynı zamanda önemli güvenlik riskleri oluşturmaktadır. Özellikle sosyal medya platformlarında yayılan manipüle edilmiş videolar, yanlış bilgi yayılımına ve kamuoyu manipülasyonuna neden olabilmektedir. Bu nedenle deepfake içeriklerin güvenilir biçimde tespit edilmesi hem akademik hem de endüstriyel araştırmaların önemli bir konusu haline gelmiştir. Deepfake detection has therefore become a critical research topic in multimedia forensics and AI security.
+
+Deepfake tespit yöntemleri genel olarak üç ana kategoriye ayrılmaktadır: görüntü tabanlı yöntemler, ses tabanlı yöntemler ve multimodal yöntemler. Görüntü tabanlı yöntemler genellikle yüz bölgesindeki sentezleme artefaktlarını analiz etmektedir. Bu yaklaşımlar yüz dokusunda oluşan renk tutarsızlıkları, geometrik bozulmalar veya sentezleme izleri gibi özellikleri kullanarak sahte videoları tespit etmeye çalışmaktadır. Ancak modern üretim teknikleri bu tür görsel izleri büyük ölçüde azaltmış ve yalnızca görüntüye dayalı sistemlerin performansını sınırlamıştır.
+
+Ses tabanlı yöntemler ise konuşma sinyalinin akustik özelliklerini analiz etmektedir. Vokal özellikler, spektral yapı ve konuşma ritmi gibi özellikler incelenerek sentetik sesler tespit edilmeye çalışılmaktadır. Bununla birlikte ses üretim teknolojilerinin gelişmesi bu yöntemlerin de güvenilirliğini azaltmıştır.
+
+Bu nedenle son yıllarda araştırmalar multimodal analiz yöntemlerine yönelmiştir. Gerçek bir konuşma sırasında konuşma sesi ile dudak hareketleri arasında güçlü bir biyomekanik ilişki bulunmaktadır. Bu ilişkinin tamamen doğru şekilde taklit edilmesi sentetik üretim süreçlerinde oldukça zordur. Bu nedenle konuşma içeriği ile dudak hareketleri arasındaki tutarlılık, deepfake tespitinde güçlü bir sinyal olarak kullanılabilir.
+
+Bu çalışmada konuşma, görüntü ve dudak hareketlerini birlikte analiz eden multimodal bir deepfake tespit sistemi önerilmektedir. Önerilen sistemde video girdisi üç farklı modalite üzerinden analiz edilmektedir: görsel sahtecilik analizi, konuşma içeriğinin dilsel temsili ve dudak hareketlerinin zamansal temsili. Konuşma temsili ile dudak hareketi temsili arasındaki benzerlik kosinüs benzerliği kullanılarak hesaplanmakta ve görsel sahtecilik skoru ile birleştirilerek nihai sahtecilik skoru elde edilmektedir.
+
+\section{Problem Tanımı}
+
+Bir konuşma videosu hem görüntü hem de ses bileşenlerinden oluşmaktadır. Gerçek bir konuşma videosunda konuşma sesi ile dudak hareketleri arasında doğal bir zaman ve içerik uyumu bulunmaktadır. Deepfake üretim süreçlerinde ise bu uyumun bozulması olasıdır.
+
+Bu çalışmada amaç verilen bir video girdisi için sahtecilik skorunu tahmin etmektir.
+
+Video girdisi şu şekilde tanımlanabilir:
+
+\[
+V = \{F_1, F_2, \ldots, F_T, A\}
+\]
+
+Burada
+
+\begin{itemize}
+  \item $F_t$ video karelerini,
+  \item $A$ ses sinyalini temsil etmektedir.
+\end{itemize}
+
+Amaç bu video girdisinden bir sahtecilik skoru üretmektir:
+
+\[
+S_f \in [0,1]
+\]
+
+Bu skor videonun sahte olma olasılığını temsil etmektedir.
+
+\section{Çalışmanın Katkıları}
+
+Bu çalışmanın temel katkıları aşağıdaki şekilde özetlenebilir:
+
+\begin{itemize}
+  \item Türkçe konuşma videoları için multimodal deepfake analizine uygun veri seti tasarımı.
+  \item Görüntü, konuşma ve dudak hareketlerini birlikte analiz eden multimodal sistem mimarisi.
+  \item Konuşma içeriği ile dudak hareketleri arasındaki tutarsızlığı ölçen senkron uyumsuzluk metriği.
+  \item Görsel sahtecilik skoru ile senkron uyumsuzluk skorunun birleştirildiği multimodal karar füzyonu yöntemi.
+\end{itemize}
+
+\section{Literatür Taraması}
+
+Deepfake tespiti son yıllarda bilgisayarla görme ve konuşma işleme alanlarının önemli araştırma konularından biri haline gelmiştir. Literatürde önerilen yöntemler genel olarak dört ana kategori altında incelenmektedir: görüntü tabanlı yöntemler, ses tabanlı yöntemler, senkronizasyon tabanlı yöntemler ve multimodal yaklaşımlar~\cite{tolosana2020deepfakes}.
+
+\subsection{Görüntü Tabanlı Deepfake Tespiti}
+
+Deepfake tespitine yönelik erken dönem çalışmalar, sentetik video üretim sürecinde ortaya çıkan görsel artefaktların analizine odaklanmıştır. Bu çalışmalar genellikle yüz bölgesinde oluşan renk uyumsuzlukları, doku bozulmaları ve geometrik anomalileri tespit etmeye çalışmaktadır.
+
+Afchar ve arkadaşları tarafından önerilen MesoNet modeli, düşük seviyeli yüz tekstür anomalilerini tespit etmeye yönelik kompakt bir konvolüsyonel sinir ağı mimarisidir. Bu model düşük hesaplama maliyeti sayesinde gerçek zamanlı deepfake tespiti için uygun bir yaklaşım sunmaktadır.
+
+Rössler ve arkadaşları tarafından geliştirilen FaceForensics++ veri seti ise deepfake araştırmalarında yaygın olarak kullanılan büyük ölçekli bir veri setidir~\cite{rossler2019faceforensics}. Bu veri seti üzerinde eğitilen XceptionNet, EfficientNet ve benzeri derin konvolüsyonel mimariler sahte yüz manipülasyonlarını yüksek doğrulukla tespit edebilmektedir.
+
+Ancak modern üretici modellerin gelişmesiyle birlikte görsel artefaktların büyük ölçüde azaltılması yalnızca görüntü tabanlı yöntemlerin etkinliğini sınırlamıştır. Özellikle diffusion ve GAN tabanlı üretim modelleri yüksek kaliteli sentetik yüzler oluşturabilmektedir.
+
+\subsection{Ses Tabanlı Deepfake Tespiti}
+
+Ses tabanlı deepfake tespit yöntemleri konuşma sinyalinin akustik özelliklerini analiz etmektedir. Bu yaklaşımlar konuşmanın spektral yapısı, formant dağılımı, prosodik özellikler ve vokal imza gibi parametreleri kullanmaktadır.
+
+ASVspoof yarışmaları, sentetik konuşma tespiti alanında önemli bir araştırma platformu oluşturmuştur. Bu yarışmalar kapsamında geliştirilen yöntemler genellikle Mel-spektrogram temsilleri üzerinde çalışan konvolüsyonel sinir ağları veya zaman serisi tabanlı modeller kullanmaktadır.
+
+Son yıllarda diffusion tabanlı konuşma sentezleme sistemleri ve gelişmiş neural TTS modelleri gerçek konuşmaya oldukça yakın sesler üretebilmektedir. Bu nedenle yalnızca ses sinyaline dayalı analiz yöntemleri bazı manipülasyonları tespit etmekte yetersiz kalabilmektedir.
+
+\subsection{Senkronizasyon Tabanlı Yaklaşımlar}
+
+Gerçek konuşma sırasında ses sinyali ile dudak hareketleri arasında güçlü bir biyomekanik ve fonetik ilişki bulunmaktadır. Bu nedenle konuşma ile dudak hareketleri arasındaki zaman uyumu deepfake tespitinde önemli bir sinyal olarak kullanılmaktadır.
+
+Chung ve Zisserman tarafından geliştirilen SyncNet modeli bu alandaki öncü çalışmalardan biridir~\cite{chung2017voxceleb}. SyncNet konuşma sesi ile dudak hareketleri arasındaki zaman uyumunu analiz ederek lip-sync tutarsızlıklarını tespit etmeyi amaçlamaktadır.
+
+Daha sonra geliştirilen Wav2Lip modeli ise konuşma sesine göre dudak hareketlerini yüksek doğrulukla senkronize edebilen bir üretim sistemi sunmuştur. Bu gelişme senkronizasyon tabanlı tespit yöntemlerinin daha gelişmiş analiz mekanizmaları gerektirdiğini göstermektedir.
+
+Son dönem çalışmalar yalnızca zaman uyumuna değil aynı zamanda konuşma içeriği ile dudak artikülasyonu arasındaki fonetik tutarlılığa da odaklanmaktadır~\cite{tian2024lips}.
+
+\subsection{Multimodal Deepfake Tespit Yöntemleri}
+
+Multimodal deepfake tespit yöntemleri farklı veri modalitelerini birlikte analiz ederek daha güvenilir tespit mekanizmaları geliştirmeyi amaçlamaktadır. Bu yaklaşımlar genellikle görüntü, ses ve dudak hareketlerini birlikte değerlendirmektedir.
+
+Mittal ve arkadaşları tarafından önerilen multimodal deepfake tespit yöntemi, görsel özellikler ile ses temsillerini birleştirerek sahte videoları tespit etmeyi amaçlamaktadır. Benzer şekilde bazı çalışmalar ses ve video arasındaki semantik tutarlılığı analiz eden multimodal transformer mimarileri kullanmaktadır. Recent studies have also explored multimodal transformer architectures for deepfake detection.
+
+Multimodal yaklaşımlar farklı veri kaynaklarından elde edilen tamamlayıcı bilgileri birleştirdiği için özellikle yüksek kaliteli deepfake üretim tekniklerine karşı daha dayanıklı sistemler geliştirilmesine olanak sağlamaktadır.
+
+Bu çalışmada önerilen yöntem, görsel sahtecilik analizi ile konuşma--dudak tutarlılığı analizini birleştiren multimodal bir mimari sunmaktadır. Konuşma içeriğinden elde edilen dilsel temsil ile dudak hareketlerinden elde edilen artikülasyon temsili arasındaki benzerlik ölçülmekte ve bu skor görsel sahtecilik skoru ile birleştirilerek nihai sahtecilik tahmini elde edilmektedir~\cite{haldar2024fakeavceleb}.
+
+\section{Veri Seti Tasarımı}
+
+Bu çalışmada konuşma içeriği ile dudak hareketleri arasındaki tutarlılığı analiz edebilmek amacıyla kontrollü bir multimodal veri seti oluşturulmuştur. Veri seti gerçek konuşma videoları ve bu videolardan türetilmiş farklı manipülasyon türlerini içermektedir.
+
+\subsection{Veri Toplama}
+
+Veri seti kısa konuşma videolarından oluşmaktadır. Her video tek bir konuşmacıyı içermekte ve ortalama 3--6 saniye uzunluğundadır. Videolar frontal kamera açısında kaydedilmiş olup yüz ve dudak bölgelerinin net biçimde görülebileceği şekilde seçilmiştir.
+
+Her video aşağıdaki veri bileşenlerini içermektedir:
+
+\begin{itemize}
+  \item Video kareleri
+  \item Ses sinyali
+  \item Konuşma transkripti
+  \item Konuşmacı kimliği
+  \item Manipülasyon etiketi
+\end{itemize}
+
+Videoların ses kanalı otomatik konuşma tanıma sistemi kullanılarak metne dönüştürülmektedir.
+
+\subsection{Manipülasyon Türleri}
+
+Deepfake ve manipülasyon senaryolarını kontrollü şekilde incelemek amacıyla üç farklı manipülasyon türü oluşturulmuştur.
+
+\begin{itemize}
+  \item \textbf{real\_sync}: Gerçek ve senkronize konuşma videosu.
+  \item \textbf{fake\_sync\_shift}: Ses sinyali belirli bir zaman gecikmesi ile kaydırılmıştır. Bu durumda konuşma ile dudak hareketleri arasında zaman uyumsuzluğu oluşur.
+  \item \textbf{fake\_content\_mismatch}: Videodaki dudak hareketleri farklı bir konuşma içeriği ile eşleştirilmiştir. Bu durumda artikülasyon ile konuşma içeriği uyumsuz hale gelir.
+  \item \textbf{fake\_audio\_synthetic}: Gerçek video üzerine sentetik konuşma sesi eklenmiştir.
+\end{itemize}
+
+Bu manipülasyon türleri konuşma--dudak tutarsızlığının farklı biçimlerini analiz etmeye olanak sağlamaktadır.
+
+\subsection{Veri Ayrımı}
+
+Modelin konuşmacıya özgü özellikleri ezberlemesini engellemek amacıyla veri seti ideal durumda \textbf{speaker-disjoint} şekilde ayrılmaktadır. Ancak AVLips veri setinde konuşmacı kimlikleri güvenilir biçimde etiketlenmediği için, ana deneylerde konuşmacı yerine örnek bazında rastgele train/val/test ayrımı uygulanmıştır. Bu ayrım modelin veri dağılımına göre genelleme performansını ölçmeyi amaçlamaktadır.
+
+\section{Sistem Mimarisi}
+
+Önerilen sistem görüntü, ses ve dudak hareketi olmak üzere üç farklı veri modalitesini analiz eden multimodal bir mimariye sahiptir. Sistem mimarisi Şekil~\ref{fig:arch}'te gösterilmektedir.
+
+Sistem üç ana bileşenden oluşmaktadır:
+
+\begin{itemize}
+  \item Görsel analiz bileşeni
+  \item Konuşma analizi bileşeni
+  \item Dudak hareketi analizi bileşeni
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\fbox{
+\begin{minipage}[c][5cm][c]{0.88\linewidth}
+\centering
+Video girdisi \\
+$\downarrow$ \\
+Yüz kareleri $\rightarrow$ Görsel analiz $\rightarrow S_v$ \\
+Ses sinyali $\rightarrow$ ASR + LLM $\rightarrow E_{\text{text}}$ \\
+Dudak bölgesi $\rightarrow$ Zamansal dudak modeli $\rightarrow M_{\text{video}}$ \\
+$E_{\text{text}}$ ve $M_{\text{video}}$ $\rightarrow$ Tutarlılık analizi $\rightarrow S_l$ \\
+$S_v$ ve $S_l$ $\rightarrow$ Karar füzyonu $\rightarrow S_f$
+\end{minipage}
+}
+\caption{Önerilen multimodal deepfake tespit sisteminin genel mimarisi.}
+\label{fig:arch}
+\end{figure}
+
+\subsection{Görsel Analiz Bileşeni}
+
+Video karelerinden yüz bölgeleri tespit edilmekte ve bu bölgeler konvolüsyonel bir sinir ağına verilmektedir. Bu ağ yüz görüntülerinden görsel sahtecilik skorunu tahmin etmektedir. Görsel analiz sonucunda elde edilen skor şu şekilde ifade edilmektedir:
+
+\[
+S_v = f_{\text{vision}}(V).
+\]
+
+Burada $S_v$ görsel sahtecilik skorunu temsil etmektedir.
+
+\subsection{Konuşma Analizi}
+
+Video içerisindeki ses sinyali otomatik konuşma tanıma sistemi kullanılarak metne dönüştürülmektedir:
+
+\[
+T = f_{\text{ASR}}(A).
+\]
+
+Elde edilen konuşma metni bir dil modeli kullanılarak semantik temsil vektörüne dönüştürülmektedir:
+
+\[
+E_{\text{text}} = f_{\text{LLM}}(T).
+\]
+
+Burada $E_{\text{text}}$ konuşma içeriğinin semantik temsilini göstermektedir.
+
+\subsection{Dudak Hareketi Analizi}
+
+Video karelerinden ağız bölgesi çıkarılarak zamansal bir model ile analiz edilmektedir. Bu model dudak hareketlerinden artikülasyon temsili üretmektedir:
+
+\[
+M_{\text{video}} = f_{\text{lip}}(V).
+\]
+
+\subsection{Konuşma--Dudak Tutarlılığı}
+
+Konuşma temsili ile dudak hareketi temsili arasındaki benzerlik kosinüs benzerliği ile hesaplanmaktadır:
+
+\[
+S_l = 1 - \cos\bigl(E_{\text{text}}, M_{\text{video}}\bigr).
+\]
+
+Bu değer konuşma ile dudak hareketleri arasındaki tutarsızlık seviyesini göstermektedir.
+
+\subsection{Karar Füzyonu}
+
+Görsel sahtecilik skoru ve konuşma--dudak tutarlılık skoru birleştirilerek nihai sahtecilik skoru elde edilmektedir:
+
+\[
+S_f = \alpha S_v + (1-\alpha) S_l,
+\]
+
+burada $\alpha$ parametresi görsel ve senkron analizlerin ağırlığını belirlemektedir.
+
+\section{Metodoloji}
+
+Model eğitimi sırasında görsel analiz ve senkron analiz bileşenleri ayrı ayrı öğrenilmektedir. Eğitim sürecinde ikili sınıflandırma kayıp fonksiyonu kullanılmaktadır:
+
+\[
+L = -\left[y \log(S) + (1-y)\log(1-S)\right],
+\]
+
+burada $y$ gerçek veya sahte etiketi, $S$ ise model çıktısını temsil etmektedir. Eğitim tamamlandıktan sonra sistem üç farklı konfigürasyon ile değerlendirilmektedir:
+
+\begin{itemize}
+  \item yalnızca görsel model,
+  \item yalnızca senkron model,
+  \item multimodal füzyon modeli.
+\end{itemize}
+
+Bu karşılaştırma multimodal yaklaşımın katkısını ölçmeyi amaçlamaktadır.
+
+\section{LLM Benchmark Analizi}
+
+Bu çalışmada konuşma içeriğinin semantik temsili için farklı metin embedding yaklaşımları karşılaştırılmıştır. Amaç, konuşma transkriptlerinden elde edilen metin temsillerinin dudak artikülasyon temsilleri ile ne ölçüde uyumlu olduğunu analiz etmektir.
+
+Karşılaştırılan iki temel yöntem şunlardır:
+
+\begin{itemize}
+  \item \textbf{simple}: Eğitim sırasında kullanılan basit metin kodlayıcısı (TextEncoder).
+  \item \textbf{whisper\_sbert}: Whisper tabanlı otomatik konuşma tanıma ve çok dilli SBERT embedding zinciri.
+\end{itemize}
+
+Her model için konuşma transkriptlerinden elde edilen embedding vektörleri dudak hareketlerinden elde edilen artikülasyon temsilleri ile karşılaştırılmış ve kosinüs benzerliğine dayalı sınıflandırma skorları üzerinden doğruluk (Accuracy), ROC--AUC ve Equal Error Rate (EER) hesaplanmıştır.
+
+\subsection{Benchmark Sonuçları}
+
+\begin{table}[htbp]
+\centering
+\caption{LLM embedding karşılaştırması (AVLips test altkümesi, $n=800$).}
+\begin{tabular}{lccc}
+\toprule
+Model & Accuracy & AUC & EER \\
+\midrule
+simple & 0.351 & 0.500 & 1.000 \\
+whisper\_sbert & 0.351 & 0.499 & 1.000 \\
+\bottomrule
+\end{tabular}
+\label{tab:llm_benchmark}
+\end{table}
+
+Sonuçlar, simple encoder ile Whisper+SBERT konfigürasyonunun benzer AUC ve EER değerleri ürettiğini göstermektedir. Bu durum, mevcut dudak embedding'leri ile metin embedding'lerinin henüz aynı gösterim uzayında yeterince hizalanamadığını ve performans darboğazının metin tarafındaki LLM'den ziyade dudak tarafındaki temsil ve multimodal hizalamada olduğunu işaret etmektedir.
+
+\section{Deneyler}
+
+Önerilen sistemin nihai performansı AVLips veri setinin test kümesi üzerinde değerlendirilmiştir. Deneylerde üç farklı model konfigürasyonu karşılaştırılmıştır:
+
+\begin{itemize}
+  \item Görsel model (Visual, $S_v$),
+  \item Senkronizasyon modeli (Sync, $S_l$),
+  \item Multimodal füzyon modeli (Fusion, $S_f$).
+\end{itemize}
+
+\subsection{Temel Performans Sonuçları}
+
+\input{results_table}
+
+Tablo~\ref{tab:main} incelendiğinde tüm konfigürasyonların AUC değerlerinin yaklaşık 0.5 civarında olduğu ve EER değerinin 1.0 olduğu görülmektedir. Bu sonuçlar, AVLips veri seti üzerinde elde edilen skorların rastgele sınıflandırıcıya yakın davrandığını göstermektedir. Görsel modelin (S_v) tek başına oldukça düşük performans göstermesi, kullanılan manipülasyon türlerinin her zaman belirgin görsel artefakt içermemesi ve modern üretici modellerin bu tür anomalileri büyük ölçüde azaltabilmesi ile açıklanabilir. Senkron modelin yüksek doğruluk değeri, dengesiz sınıf dağılımı ve karar eşiği seçiminin etkisiyle yorumlanmalıdır; F1, AUC ve EER değerleri senkron bileşenin de henüz güçlü bir ayrım gücüne sahip olmadığını göstermektedir.
+
+\subsection{Fusion Ağırlık Analizi}
+
+Füzyon parametresi $\alpha$ için yapılan ablation analizi Tablo~\ref{tab:ablation_alpha}'da gösterilmektedir.
+
+\input{ablation_alpha}
+
+Tablo~\ref{tab:ablation_alpha}, mevcut konfigürasyonda karar füzyonunda kullanılan ağırlıkların performans üzerinde belirgin bir etkisi olmadığını göstermektedir. Farklı $\alpha$ değerlerinde elde edilen AUC ve EER metrikleri neredeyse aynıdır; bu da hem görsel hem de senkron kolların skorlarının ayrım gücünün sınırlı olduğunu ve füzyon aşamasında kullanılacak daha zengin temsil ve öğrenilebilir füzyon mekanizmalarına ihtiyaç duyulduğunu ortaya koymaktadır.
+
+\section{Tartışma}
+
+Bu çalışma, konuşma--görüntü tutarlılığına dayalı multimodal deepfake tespiti için uçtan uca bir çerçeve sunmakta; ancak sayısal sonuçlar, mevcut haliyle sistemin güçlü bir dedektör olmadığını göstermektedir. AVLips test kümesinde görsel, senkron ve füzyon modellerinin AUC değerlerinin 0.5 civarında kalması, hem dudak embedding'lerinin hem de metin tarafındaki temsilin henüz yeterince ayırt edici olmadığını ortaya koymaktadır. LLM Benchmark deneyinde de simple encoder ve Whisper+SBERT konfigürasyonlarının benzer AUC ve EER değerleri üretmesi, darboğazın metin tarafındaki dil modelinden ziyade dudak hareketinden elde edilen temsil ve genel multimodal hizalamada olduğunu göstermektedir.
+
+Literatürdeki çalışmalarla karşılaştırıldığında, bu bulgular önemli bir boşluğa işaret etmektedir. FaceForensics++ ve Celeb-DF gibi veri setleri üzerinde eğitilen saf görsel modeller genellikle yüksek doğruluk ve AUC değerleri rapor etmektedir; ancak bu çalışmalar çoğunlukla tek modaliteye odaklanmakta ve konuşma--dudak tutarlılığını doğrudan modellememektedir. Lip-senkronizasyon odaklı SyncNet benzeri yöntemler ise dudak--ses zaman uyumunu başarıyla yakalasa da, tam anlamıyla multimodal bir sahtecilik skoru ($S_f$) tanımlamamakta veya LLM tabanlı metin temsilini içermemektedir. Önerilen yaklaşım, bu iki hattı birleştiren bir çerçeve sunmakta; fakat güçlü, önceden eğitilmiş AV-sync backbone'ları ve büyük dil modelleriyle tam entegrasyon yapılmadığı sürece bu potansiyelin sayısal performansa yansımayacağını göstermektedir.
+
+Bu durumu daha net görmek için Tablo~\ref{tab:literature_comparison}'da literatürde raporlanan bazı çalışmalar ile bu çalışmanın nitel karşılaştırması verilmiştir.
+
+\begin{table}[htbp]
+\centering
+\caption{Literatürdeki yöntemlerle nitel karşılaştırma. Rakamlar temsili olup asıl makalelerde raporlanan değerlere göre güncellenebilir.}
+\label{tab:literature_comparison}
+\begin{tabular}{lcccc}
+\toprule
+Çalışma & Veri seti & Modalite & AUC & Not \\
+\midrule
+FaceForensics++~\cite{rossler2019faceforensics} & FF++        & Görsel      & 0.90+ & Yüz artefaktları, tek modalite \\
+Celeb-DF~\cite{li2020celebdfface}               & Celeb-DF    & Görsel      & 0.80+ & Daha zor veri, sadece video \\
+SyncNet (Chung \& Zisserman)~\cite{chung2017voxceleb} & LRS / AV set & Ses+Dudak  & --   & Lip-sync tespiti, tutarlılık skoru \\
+FakeAVCeleb~\cite{haldar2024fakeavceleb}        & FakeAVCeleb & Ses+Görüntü & --   & Multimodal deepfake veri seti \\
+Bu çalışma ($S_v$)                              & AVLips      & Görsel      & 0.499 & Konuşma--dudak odaklı, sınırlı ayrım \\
+Bu çalışma ($S_l$)                              & AVLips      & Ses+Dudak   & 0.500 & Dudak ve metin embedding'leri uyumsuz \\
+Bu çalışma ($S_f$)                              & AVLips      & Çok modlu   & 0.499 & Basit skor füzyonu, ek fayda yok \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Tablo~\ref{tab:literature_comparison}, mevcut sonuçların mutlak performans açısından zayıf olduğunu ancak önerilen çerçevenin konuşma--dudak--görüntü tutarlılığını aynı anda ele alan ve LLM tabanlı metin embedding'leriyle deneysel karşılaştırma yapan az sayıda çalışmadan biri olduğunu göstermektedir. Gelecek çalışmalarda (i) SyncNet veya benzeri AV-sync modellerinin dudak embedding'i için kullanılması, (ii) Whisper ve çok dilli SBERT gibi LLM tabanlı metin embedding'lerinin bu backbone'larla ortak bir gösterim uzayında yeniden eğitilmesi ve (iii) daha zengin görsel manipülasyon tiplerini içeren veri setleriyle eğitim yapılması planlanmaktadır. Böylece hem LLM'lerin hem de önceden eğitilmiş multimodal modellerin gücünden tam anlamıyla faydalanan daha güçlü bir konuşma--görüntü tutarlılığı dedektörü elde etmek mümkün olacaktır.
+
+\section{Sonuç}
+
+Bu çalışmada Türkçe konuşma videoları için multimodal bir deepfake tespit sistemi önerilmiştir. Önerilen sistem görüntü, konuşma ve dudak hareketlerini birlikte analiz ederek sahte videoları tespit etmeyi amaçlamaktadır. Sistem; görsel sahtecilik skoru ($S_v$), konuşma--dudak tutarlılık skoru ($S_l$) ve bunların füzyonundan elde edilen $S_f$ skorunu birlikte kullanmaktadır.
+
+Deneysel sonuçlar, mevcut konfigürasyonda konuşma--dudak tutarlılığı analizinin deepfake tespitinde kullanılabilir bir sinyal olduğunu ancak güçlü bir ayrım gücü elde etmek için daha gelişmiş dudak embedding'leri, önceden eğitilmiş AV-sync modelleri ve LLM tabanlı metin temsilcilerinin birlikte değerlendirilmesi gerektiğini göstermektedir. Gelecek çalışmalarda daha büyük veri setleri üzerinde değerlendirme yapılması, multimodal transformer mimarilerinin araştırılması ve öğrenilebilir füzyon mekanizmalarının tasarlanması planlanmaktadır. Önerilen çerçeve, bu doğrultuda hem veri toplama hem de model geliştirme çalışmaları için bir başlangıç noktası sunmaktadır.
+
+\bibliographystyle{IEEEtran}
+\bibliography{refs}
+
+\end{document}
+

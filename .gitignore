@@ -1,0 +1,30 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.env
+.env
+.venv/
+venv/
+env/
+
+# IDE/editor
+.vscode/
+.idea/
+*.code-workspace
+
+# Checkpoints, logs, cache
+checkpoints/
+logs/
+*.log
+
+# Data (büyük ham ve türetilmiş dosyalar)
+data/raw_videos/
+data/raw_audio/
+data/processed/
+data/splits/
+
+# OS files
+Thumbs.db
+Desktop.ini

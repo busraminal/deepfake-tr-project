@@ -1,0 +1,25 @@
+# deepfake_tr_project dependencies
+# Python >= 3.8 recommended
+
+# Video/audio
+opencv-python>=4.5.0
+librosa>=0.9.0
+soundfile>=0.10.0
+
+# ML
+torch>=1.10.0
+torchvision>=0.11.0
+
+# Config
+pyyaml>=5.4.0
+
+# Utils
+numpy>=1.21.0
+tqdm>=4.60.0
+scikit-learn>=1.0.0
+
+# Optional: Turkish transcription
+# openai-whisper
+
+# Optional: audio extraction without ffmpeg
+# moviepy

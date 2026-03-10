@@ -1,0 +1,14 @@
+# Türkçe cümle havuzu — veri toplama protokolü
+# Her konuşmacı bu cümlelerden rastgele seçerek 5 video çeker (4–8 sn, tek kişi, kamera sabit, yüz net).
+# Hedef: N_real = 100 (20 konuşmacı x 5 video), N_fake = 300, N_toplam = 400.
+
+Bugün model sonuçlarını yeniden değerlendireceğiz.
+Bu proje Türkçe konuşma ile dudak hareketlerini analiz eder.
+Veri setindeki örnekleri dikkatli şekilde etiketlememiz gerekiyor.
+Yarın toplantıda deney sonuçlarını paylaşacağız.
+Bu sistem sahte videoları tespit etmeyi amaçlamaktadır.
+Model eğitimi tamamlandıktan sonra doğruluk oranını ölçtük.
+Araştırma ekibi yeni veri seti üzerinde çalışıyor.
+Konuşma ve dudak hareketi uyumu çok önemli bir sinyal verir.
+Sentetik ses ile gerçek sesi ayırt etmek mümkündür.
+Multimodal sistemler tek moda göre daha güvenilirdir.
