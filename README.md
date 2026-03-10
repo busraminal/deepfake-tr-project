@@ -5,7 +5,7 @@ Görsel sahtecilik, konuşma içeriği ve dudak hareketlerini birlikte inceleyen
 
 ![Multimodal Deepfake Detection Architecture](paper/figures/architecture.png)
 
-> **Amaç:** Yüksek skor alan bir “ürün” çıkarmaktan çok, **konuşma–dudak–görüntü tutarlılığını aynı anda modelleyip, neden zor bir problem olduğunu deneysel olarak göstermek** (negatif ama faydalı sonuçlar).
+> **Amaç:** Yüksek skor alan bir “ürün” çıkarmaktan çok, **konuşma–dudak–görüntü tutarlılığını aynı anda modelleyip, neden zor bir problem olduğunu deneysel olarak göstermek** .
 
 ---
 
