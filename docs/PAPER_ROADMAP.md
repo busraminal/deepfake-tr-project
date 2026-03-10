@@ -73,13 +73,13 @@ ile **model | accuracy | AUC | EER | F1** tablosunu al. Bu tablo makaledeki “m
 
 ## Önerilen Makale Tablo Şablonu
 
-| Model | Accuracy | Precision | Recall | F1 | AUC | EER |
-|-------|----------|-----------|--------|-----|-----|-----|
-| Visual only (S_v) | — | — | — | — | — | — |
-| Sync only (S_l) | — | — | — | — | — | — |
-| Fusion (S_f) | — | — | — | — | — | — |
+| Model              | Accuracy | Precision | Recall | F1    | AUC   | EER  |
+|--------------------|----------|-----------|--------|-------|-------|------|
+| Visual only (S_v)  | 0.315    | 0.000     | 0.000  | 0.000 | 0.499 | 1.000 |
+| Sync only (S_l)    | 0.685    | 0.000     | 0.000  | 0.000 | 0.500 | 1.000 |
+| Fusion (S_f)       | 0.315    | 0.000     | 0.000  | 0.000 | 0.499 | 1.000 |
 
-Değerler `python run_pipeline.py evaluate` veya `scripts/export_results_table.py` / `scripts/run_experiments.py` ile doldurulur.
+Değerler `python run_pipeline.py experiments --split test` ile elde edilen AVLips test sonuçlarına göre doldurulmuştur.
 
 ## Mimari figür
 
