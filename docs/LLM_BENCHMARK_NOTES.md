@@ -16,7 +16,7 @@ Tablodaki değerler:
 - **Basit text encoder** ile **Whisper+SBERT** arasında anlamlı fark yok.
 - Her iki durumda da AUC ≈ 0.5 ve EER = 1.0 → metin–dudak hizalaması şu aşamada rastgele seviyede.
 
-## 2. Çıkarımlar (makalede kullanılabilecek cümleler)
+## 2. Çıkarımlar 
 
 - *\"LLM tabanlı metin embedding'lerini (Whisper+SBERT) basit bir text encoder ile karşılaştırdık (Tablo X). Mevcut dudak embedding'leriyle birlikte kullanıldığında her iki yöntem de AUC ≈ 0.5 civarında performans göstermiştir. Bu durum, darboğazın metin tarafındaki dil modeli değil, dudak hareketinden elde edilen temsil ve genel multimodal hizalama olduğunu göstermektedir.\"*
 
